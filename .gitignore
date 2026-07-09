@@ -1,0 +1,13 @@
+# 记忆数据库（含会话记录）
+transcripts/
+sessions.json
+
+# 敏感配置
+*.local.md
+*.key
+.env
+.DS_Store
+
+# 临时文件
+.memory/dream.lock
+*.log

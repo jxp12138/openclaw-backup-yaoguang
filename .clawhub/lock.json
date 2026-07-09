@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "self-improving": {
+      "version": "1.2.16",
+      "installedAt": 1781019960296,
+      "registry": "https://clawhub.ai"
+    },
+    "self-improving-agent": {
+      "version": "3.0.23",
+      "installedAt": 1781019978604,
+      "registry": "https://clawhub.ai"
+    },
+    "proactivity": {
+      "version": "1.0.1",
+      "installedAt": 1781020197600,
+      "registry": "https://clawhub.ai"
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1781021932547,
+      "registry": "https://clawhub.ai"
+    }
+  }
+}
