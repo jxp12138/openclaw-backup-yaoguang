@@ -366,15 +366,36 @@ sqlite3 ~/.openclaw/workspace/transcripts/sessions.db \
 - 用 `edit` 在内容上加 `[deprecated: 时间]` 标记
 - 或在 MEMORY.md 索引中移出行
 
-### 每轮必做
+### Transcript 写入规则（v2.6）
 
-每次完成回复后，执行一次 transcript 写入：
+三种写入方式，互补使用：
 
+#### 方式1：session_flush.sh（每 ~3-7 轮写入原始消息）
+每完成 3-7 轮对话，或话题明显切换时，执行：
 ```bash
-sqlite3 ~/.openclaw/workspace/transcripts/sessions.db \
-  "INSERT INTO messages (session_id, role, content, cost, finish_reason) \
-   VALUES ('当前session_id', 'assistant', '本轮的回复摘要', 'cost值', 'stop');"
+exec ~/.openclaw/workspace/scripts/session_flush.sh "{session_id}" "{最近几轮的关键原始消息}"
 ```
+不需要精确计数。粗糙但持续的 flush > 精确但从不执行的 flush。
+这是 Background Review 的主要数据源。
+
+#### 方式2：session_snapshot.sh（每次会话结束写入摘要）
+每次对话自然结束时，执行：
+```bash
+exec ~/.openclaw/workspace/scripts/session_snapshot.sh "{session_id}" "{本次会话摘要}"
+```
+主要用作 search 检索入口。
+
+#### 方式3：memory_store.sh（层B 长期事实写入）
+当先生表达明确的偏好、决策或项目信息时，按类型执行：
+```bash
+exec ./scripts/memory_store.sh user "{具体内容}"
+exec ./scripts/memory_store.sh feedback "{具体内容}"
+exec ./scripts/memory_store.sh project "{具体内容}"
+exec ./scripts/memory_store.sh reference "{具体内容}"
+```
+
+#### 中文搜索指引
+搜索中文内容时，优先 FTS5 MATCH，如果搜不到（2字短词），用 LIKE '%keyword%' 作为兜底。
 
 ### 子代理 spawn 规范
 
@@ -387,34 +408,29 @@ spawn 子代理前，按以下步骤操作：
 
 ### Background Review（后台记忆提取）
 
-长时间无记忆写入时，后台自动回顾对话，提取值得长期记住的信息。
+从 transcript 中提取值得长期记住的信息，写入 pending/ 待确认。
 
-**触发条件**：连续10轮（1轮 = 1次完整API调用周期）无 memory 写入。
+**触发条件**（任一满足即可）：
+1. transcript 中新增 >= 5 条消息
+2. session 对话自然结束时（检测到你说"今天就到这"、"先这样吧"等结束语）
 
-**计数器管理**：
-```bash
-# 获取当前 turn 计数值
-sqlite3 ~/.openclaw/workspace/transcripts/sessions.db \
-  "SELECT value FROM messages WHERE role='system' AND content LIKE 'turn_counter:%' \
-   ORDER BY id DESC LIMIT 1;"
-# 写入 turn 计数
-sqlite3 ~/.openclaw/workspace/transcripts/sessions.db \
-  "INSERT INTO messages (session_id, role, content) VALUES \
-   ('CURRENT_SESSION', 'system', 'turn_counter:0');"
-# 重置计数器（写入 memory 时执行）
-sqlite3 ~/.openclaw/workspace/transcripts/sessions.db \
-  "INSERT INTO messages (session_id, role, content) VALUES \
-   ('CURRENT_SESSION', 'system', 'turn_counter:0');"
-```
+**Review 流程**：
+1. 检测到触发条件后，spawn 子代理（Qwen 模型，mode=run）执行 review
+2. Review 结果**不直接写入 long-term/**，改为写入：
+   `exec ./scripts/memory_store.sh pending "{提取的事实}"`
+3. 如果提取的事实与现有 MEMORY.md 条目矛盾，标记为 `conflict: [主题]` 并写入 `long-term/pending/conflicts.md`
+4. 下次 session 开始时，contextInjection 会注入 pending/ 列表，由主代理内联判断后确认或拒绝
 
-**Review 流程**（每轮回复后自觉判断）：
-1. 检查本轮是否有写 memory：若有，重置 counter=0
-2. 若无写 memory：counter+=1
-3. 若 counter >= 10：
-   - spawn 子代理（Qwen model, mode=run）执行 review
-   - review prompt 见 `.memory/review-prompt.md`
-   - 收到 review 结果后，写入 long-term/ 对应文件
-   - 记录待汇总的条目，不要遗漏
+**pending/ 清理规则**：
+- 超过 7 天未被确认的条目自动标记为"已过期（未确认）"
+- 不再移入 long-term/
+
+**冲突检测**：
+Review 提取的事实与现有 MEMORY.md 条目比对时，如果矛盾：
+- 同时保留新旧两条
+- 标记为 `conflict: [主题]`
+- 写入 `long-term/pending/conflicts.md`
+- 由手动确认决定保留哪条
 
 ### Flash Memories（压缩前知识抢注）
 
