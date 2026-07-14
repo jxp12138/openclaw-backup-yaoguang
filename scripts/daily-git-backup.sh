@@ -26,7 +26,8 @@ git commit -m "auto-backup $(date '+%Y-%m-%d %H:%M')" >> "$LOG" 2>&1
 
 # 推送（如果有 remote）
 if git remote -v | grep -q origin; then
-    git push origin main >> "$LOG" 2>&1 || echo "WARN: push 失败（可能无网络或无权限）" >> "$LOG"
+    # 添加超时防止 SSH/GitHub 连接挂死
+    timeout 30 git push origin master >> "$LOG" 2>&1 || echo "WARN: push 失败（超时或无网络或无权限）" >> "$LOG"
 fi
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 备份完成" >> "$LOG"
