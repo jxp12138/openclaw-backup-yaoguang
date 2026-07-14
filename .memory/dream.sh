@@ -1,8 +1,11 @@
 #!/bin/bash
 # Auto Dream — 记忆系统离线整合守护脚本
 # 由 cron 每日定时触发，检查是否满足整合条件
+#
+# 修复：v2 — 分离锁文件和上次运行时间戳（解决持续 SKIP bug）
 
 LOCK_FILE="$HOME/.openclaw/workspace/.memory/dream.lock"
+LAST_RUN_FILE="$HOME/.openclaw/workspace/.memory/dream_last_run"  # 新增：独立时间戳文件
 DB="$HOME/.openclaw/workspace/transcripts/sessions.db"
 LOG_FILE="$HOME/.openclaw/workspace/.memory/dream.log"
 INDEX_FILE="$HOME/.openclaw/workspace/MEMORY.md"
@@ -12,50 +15,54 @@ log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
-# === 锁机制 ===
-# 检查锁文件 (CAS 竞争检测)
+create_lock() {
+    # 原子创建锁文件
+    echo "$$" > "$LOCK_FILE"
+    # CAS 验证
+    READ_PID=$(cat "$LOCK_FILE" 2>/dev/null)
+    if [ "$READ_PID" != "$$" ]; then
+        log "SKIP: 锁竞争失败 (预期 $$, 读到 $READ_PID)"
+        exit 0
+    fi
+}
+
+release_lock() {
+    rm -f "$LOCK_FILE"
+}
+
+# === 锁机制（仅用于互斥，不用于时间戳）===
 if [ -f "$LOCK_FILE" ]; then
     LOCK_TIME=$(stat -c %Y "$LOCK_FILE" 2>/dev/null)
     LOCK_AGE=$(( $(date +%s) - ${LOCK_TIME:-0} ))
     # 超过 1 小时的锁视为过期（上次跑崩了）
     if [ "$LOCK_AGE" -lt 3600 ]; then
-        log "SKIP: 锁文件存在（${LOCK_AGE}s 前创建）"
+        log "SKIP: 锁文件存在（${LOCK_AGE}s 前创建），互斥冲突"
         exit 0
     fi
     log "WARN: 锁文件过期（${LOCK_AGE}s），覆盖"
 fi
 
-# 获取锁 (写入当前 PID)
-echo $$ > "$LOCK_FILE"
-# CAS 验证：读回来检查是不是自己的 PID
-READ_PID=$(cat "$LOCK_FILE" 2>/dev/null)
-if [ "$READ_PID" != "$$" ]; then
-    log "SKIP: 锁竞争失败 (预期 $$, 读到 $READ_PID)"
-    rm -f "$LOCK_FILE"
-    exit 0
-fi
+create_lock
 
 # === 条件检查 ===
 
-# 条件 1: 距上次整合至少 24 小时
-if [ -f "$LOCK_FILE" ]; then
-    LAST_RUN_TIME=$(stat -c %Y "$LOCK_FILE" 2>/dev/null)
+# 条件 1: 距上次整合至少 24 小时（使用独立时间戳文件）
+if [ -f "$LAST_RUN_FILE" ]; then
+    LAST_RUN_TIME=$(stat -c %Y "$LAST_RUN_FILE" 2>/dev/null)
     LAST_RUN_AGE=$(( $(date +%s) - ${LAST_RUN_TIME:-0} ))
     if [ "$LAST_RUN_AGE" -lt 86400 ]; then
         log "SKIP: 距上次整合仅 $(( LAST_RUN_AGE / 3600 )) 小时，不足 24h"
-        rm -f "$LOCK_FILE"
+        release_lock
         exit 0
     fi
 fi
 
 # 条件 2: 期间至少新增 5 条记忆
-# 通过检查 feedback-log.md 和 project-context.md 的新增行数估算
 if [ -d "$LONG_TERM_DIR" ]; then
     TOTAL_LINES=$(wc -l "$LONG_TERM_DIR"/*.md 2>/dev/null | tail -1 | awk '{print $1}')
-    # 粗略判断：如果所有 long-term 文件总行数 < 50，说明数据很少
     if [ "${TOTAL_LINES:-0}" -lt 50 ]; then
         log "SKIP: long-term 总行数仅 ${TOTAL_LINES:-0}，数据不足整合"
-        rm -f "$LOCK_FILE"
+        release_lock
         exit 0
     fi
 fi
@@ -88,10 +95,12 @@ sqlite3 "$DB" "INSERT INTO messages (session_id, role, content) VALUES ('system'
 
 log "DONE: Auto Dream 标记完成，等待主代理执行整合"
 
+# === 更新上次运行时间戳（仅成功完成时写入）===
+touch "$LAST_RUN_FILE"
+log "TIME: 上次运行时间戳已更新"
+
 # === 释放锁 ===
-# 更新锁文件修改时间（= 本次整合时间戳，供下次判断）
-rm -f "$LOCK_FILE"
-echo "$$" > "$LOCK_FILE"
-log "LOCK: 锁更新完毕"
+release_lock
+log "LOCK: 锁已释放"
 
 exit 0
