@@ -45,3 +45,21 @@
 
 ### 2026-07-12 20:46
 记忆系统 v2.6 Phase 1 验证测试
+
+### 2026-07-15 22:02~23:00 — 网站搭建 + 域名绑定 + 安全加固
+
+**完成内容：**
+- 域名 www.jxpyaoguang.cloud 绑定到本机（49.235.164.60）
+- Nginx 配置反向代理到 Gateway（端口18789），支持 WebSocket
+- SSL 证书安装（TrustAsia DV TLS RSA CA 2024，有效期至2026-10-09）
+- 腾讯云防火墙开放 80/443 端口
+- Control UI 可通过 https://www.jxpyaoguang.cloud 访问
+- Windows 的 OpenClaw Control 桌面端可通过 wss 连接回来
+- SSH 加固：禁用密码登录、禁 root 密码登录、安装 fail2ban
+- 公安备案审核被退回（原因：网站无法打开、交互服务选项问题），待重新提交
+
+**已知问题：**
+- 记忆系统自动化缺失（无 cron 任务、无 Auto Dream、GitHub 备份推送失败）
+
+**下一步：**
+- 记忆系统自动化补全
