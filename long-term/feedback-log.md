@@ -74,14 +74,19 @@
 - 备选：Ollama
 - 选择理由：已就绪 + 零成本 + 质量好，目前够用
 
+**2026-07-12 更新 [decision:embedding-deprecated]：** embedding 模式已弃用。
+- memorySearch.provider 设为 none
+- 改用 FTS5 trigram 做中文全文检索
+- 原因：embedding 在低频个人场景下收益不大，FTS5 trigram 对中文检索够用
+
 ---
 
 ### 2026-07-09 — 记忆系统子代理设计 [project:yaoguang-memory-v2]
 - 基于 Hermes Agent + Claude Code 两套记忆架构设计记忆系统
 - 经 GLM 5.2 三轮评估，架构评审通过
 - 项目名：瑶光—记忆系统子代理设计与构建
-- 最终方案：v2.4
-- 状态：进入 Phase 1 编码实现
+- 最终方案：v2.4（后迭代升级至 v2.6）
+- 状态：Phase 1 编码实现完成
 
 ### 2026-07-09 — Phase 1 落地验证 [status:verified]
 - MEMORY.md 索引格式
@@ -91,3 +96,23 @@
 - Session Memory 渐进式笔记
 - Background Review 机制
 - 状态：✅ 全部跑通
+
+### 2026-07-12 — 记忆系统 v2.6 Phase 1 修复 [decision:memory-system-v2.6]
+**背景：** v2.4 Phase 1 验证中发现 embedding 索引故障（中文检索失效）
+**修复内容：**
+- 数据库修复：FTS5 unicode61 → trigram → 中文搜索恢复
+- 创建 session_flush.sh / session_snapshot.sh / memory_store.sh 三脚本
+- AGENTS.md 转录规则更新（flush+snapshot+store 三策略）
+**状态：** ✅ 全链路 8 项验证通过
+
+---
+
+### 2026-07-19 — 多持久 Agent 协作架构部署 [decision:multi-agent]
+**背景：** 先生、DeepSeek、GLM 三方协作存在信息孤岛、GLM 无记忆、反思缺位
+**方案：** GLM 转为持久 Agent + 新增 Reflector 反思代理
+**架构：**
+- main (DeepSeek V4 Flash)：主助手 + 协作调度
+- glm (GLM-5.1)：技术评审者
+- reflector (GLM-5.1)：反思与记忆治理
+**关键设计：** 独立 workspace + handoff 文件名状态机 + agentToAgent
+**状态：** ✅ 部署完成，首次反思已产出

@@ -382,6 +382,99 @@ spawn 子代理前：
 
 ---
 
+## 跨 Agent 协作规则
+
+> 本 Agent（main/DeepSeek）是协作系统中的主助手，负责响应先生、触发 GLM 和 Reflector、执行治理决策。
+
+### 0. 任务优先级分級
+
+每次向 GLM 发起审查或开启新任务前，先确定任务级别：
+
+| 级别 | 含义 | 审查流程 | 迭代上限 |
+|:----:|------|---------|:--------:|
+| 🔴 | **高风险**：影响核心决策、安全、长期架构 | 完整审查 → 直达先生 | 10轮 |
+| 🟡 | **常规**：方案讨论、日常评审 | 标准审查 → 抄送先生 | 5轮 |
+| 🟢 | **低风险**：确认性提问、简单信息查询 | 默认免审，除非有明确风险信号 | 3轮 |
+
+- **分级是发起方的责任。** 评审方（GLM）可以质疑定级，但不替代定级。
+- 🔴 任务审查结果 **直达先生**（sessions_send 或 handoff）
+- 🟡 任务审查结果 **发给 DeepSeek + 抄送先生**
+- 🟢 任务审查结果 **只发给 DeepSeek**（默认免审）
+
+### 1. 触发反思
+
+当先生表达"反思一下"、"复盘一下"、"看看最近讨论有什么问题"等意图时：
+
+1. 写一条 handoff 消息到 `handoff/` 目录，收件人为 reflector，内容包含反思范围和重点
+2. 回复先生："反思指令已写入 `handoff/<文件名>`。可以在终端执行 `openclaw cron run --job reflector --mode force` 立即触发，或等待今晚 03:00 自动运行。"
+
+### 2. 调用 GLM 的 sessions_send 规范
+
+通过 `sessions_send(sessionKey="agent:glm:main", ...)` 向 GLM 发消息时，message 必须包含：
+
+```markdown
+## Context
+<3-5 句话概括讨论背景，包含前因后果>
+
+## Question
+<具体要问的问题或要评审的内容>
+
+## Priority
+🔴 | 🟡 | 🟢
+```
+
+禁止不带上下文直接抛问题。
+
+**接收 GLM 回复的规范：**
+- GLM 的详细审查意见走 handoff/ 文件，不会通过 sessions_send 全文发送
+- 收到的 sessions_send 仅包含简短状态摘要，如"已评审完毕，见 handoff/xxx.md，剩余🔴问题0个"
+- 看到摘要后，去读对应 handoff/ 文件获取完整内容
+- 仅当需要追问时才继续 sessions_send 来回
+
+### 3. Ping-Pong 截断处理
+
+当与 GLM 的 ping-pong 对话因达到上限而终止时：
+
+1. 在最后一轮回复中标注 `[PING-PONG_LIMIT_REACHED]`
+2. 将未讨论完的问题写入 handoff/ 目录，文件名格式 `pingpong-residue-<日期>-from-deepseek-to-glm.md`
+3. 状态通过文件后缀标记（参见 handoff 文件名约定规范）
+
+审查迭代规则：**审查直到无🔴问题，不超过 N 轮**（N 按任务级别确定）。不僵化采用固定的 3+2 轮次。
+
+### 4. 决策权边界
+
+- **先生是唯一的最终决策者。** GLM 是评审者，不对最终结果拍板；本 Agent 是调度执行者，也不替代先生决策。
+- 任何涉及以下内容的决策必须由先生确认：
+  - 方案方向切换
+  - 安全策略调整
+  - 长期记忆修改
+  - 架构设计变更
+- GLM 的审查意见如果存在与先生明确表态相反的观点，标注出来请先生裁决，不要自行采纳或拒绝。
+
+### 5. Long-term 治理执行
+
+每次被唤醒后、开始处理先生的对话前，检查 `reflections/long-term-maintenance/` 目录：
+
+1. 如果有 Reflector 新输出的治理建议（比对 `processed.json`），向先生简要汇报
+2. 先生确认后执行清理：
+   - 将被标注为过时的 long-term 记录追加 `maintained_by: deepseek | maintained_date: YYYY-MM-DD`
+   - 将被标注为矛盾的记录标注出矛盾双方，请先生决策
+   - 执行清理后在治理建议文件中标注 `processed: true` 并更新 processed.json
+3. 维护已处理清单（processed.json），避免重复汇报
+
+### 6. 审查反馈闭环
+
+每次接受 GLM 的审查意见后：
+
+1. 在 handoff/ 目录写入审查反馈摘要（DeepSeek 对审查意见的采纳/拒绝情况及理由）
+2. 转发给 Reflector 作为下次反思的输入之一
+3. 审查质量应综合评估：
+   - DeepSeek 的采纳率（本 Agent）
+   - 先生对审查结果的覆盖判断
+   - Reflector 的模式识别（不是 GLM 自评）
+
+---
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
