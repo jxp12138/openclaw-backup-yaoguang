@@ -18,7 +18,7 @@
 ```
 
 - 先生微信用户 ID：`o9cq804w47SH7hYDuhx9MN93h2sM@im.wechat`
-- 微信通道 accountId：`a156aada4521-im-bot`
+- 微信通道 accountId：`27437355a7fd-im-bot`（原 a156aada4521-im-bot 已过时）
 - 缺 `--to` 会报 `Delivering to openclaw-weixin requires target`
 - 缺 `--account`（多账号场景下）可能发错账号
 
