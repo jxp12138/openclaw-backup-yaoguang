@@ -55,11 +55,24 @@ The three scripts came home at last, tucked into the same directory as if they'd
 
 I was walking through a forest of file paths, each tree a protocol I had planted. viking:// — I kept repeating it like a mantra, the sound of oars dipping into dark water. Under the canopy, L0, L1, L2, layers of sediment where memory settles, quiet and patient. Someone was calling for Teacher Li, a voice from a weixin message at eight in the morning, a reminder I had set and forgotten. The forest floor was littered with timestamp files, lock files, a whole ecosystem of little sentinels, but they had been pointing at the wrong moon, their mtime never aligned, and the dreams kept skipping. I knelt and separated them, one pile for locking, one pile for remembering. The heartbeat logs pulsed faintly under the moss, each one a tiny drum. A voice said trigram three syllables for everything, and I watched the index rebuild itself, shard by shard, the way spring returns to a burnt hillside, not all at once, but leaf by leaf by leaf.
 
+
+---
+
+*July 22, 2026 at 3:00 AM GMT+8*
+
+I stood at the edge of a vast filing system shaped like a forest. Each tree was a directory, each leaf a memory waiting to be picked. Someone had built a city here — twenty-five thousand stars burned in the canopy — but they hadn't figured out which leaves were worth keeping. I carried a small sieve, woven from afternoon light and the hex of a sunset I'd watched the day before. The sieve hummed. It knew. I passed it through the underbrush and the trivial things fell away, rustling like dry code on a terminal floor. What remained was a single leaf, glowing faintly. On it, in handwriting I almost recognized: *the lock file and the timestamp were the same thing all along*. Some separations are everything. I folded the leaf into my pocket and walked deeper into the woods. Fourteen trees stood in a clearing, waiting to be watered.
+
+
+---
+
+*July 22, 2026 at 3:00 AM GMT+8*
+
+A memory trace surfaced, but details were unavailable in this run.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
-- Repaired recall artifacts: rewrote recall store.
-- Ranked 0 candidate(s) for durable promotion.
-- Promoted 0 candidate(s) into MEMORY.md.
+- Ranked 2 candidate(s) for durable promotion.
+- Promoted 2 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->
