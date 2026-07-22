@@ -1,0 +1,68 @@
+{
+  "schema": "v1",
+  "last_updated": "2026-07-22T07:30",
+
+  "允许自执行的操作类型": [
+    "index-update",
+    "file-archive",
+    "log-dedup",
+    "header-update",
+    "field-mark",
+    "promoted-compress"
+  ],
+
+  "描述": {
+    "index-update": "更新MEMORY.md索引条目和摘要行",
+    "file-archive": "将文件移到archive/目录，不删除原始文件",
+    "log-dedup": "删除memory/日志中的重复条目",
+    "header-update": "更新文件头部日期/版本信息",
+    "field-mark": "标记状态、标注、添加备注",
+    "promoted-compress": "压缩promoted/memory promotion条目为摘要"
+  },
+
+  "禁止自执行的操作类型": [
+    "config-modify",
+    "file-delete",
+    "api-call-external",
+    "cron-modify",
+    "security-change",
+    "data-destructive",
+    "model-config-change"
+  ],
+
+  "描述": {
+    "config-modify": "修改openclaw.json等配置文件",
+    "file-delete": "永久删除文件（非archive移动）",
+    "api-call-external": "调用外部API（含付费操作）",
+    "cron-modify": "创建/修改/删除cron任务",
+    "security-change": "修改安全相关配置",
+    "data-destructive": "破坏性数据操作（清空/覆盖）",
+    "model-config-change": "修改模型提供商配置"
+  },
+
+  "操作规则": {
+    "🟢自执行": {
+      "condition": "action_type in auto_exec AND 当日累计 ≤ daily_limit",
+      "action": "DeepSeek自行执行，无需确认",
+      "after": "在daily report中记录"
+    },
+    "🟢超出白名单": {
+      "condition": "action_type not in auto_exec AND not in never_auto",
+      "action": "记录日志，暂缓执行，下次对话让先生确认",
+      "after": "在对话开始时提醒"
+    },
+    "🟢禁止自执行（即使标🟢）": {
+      "condition": "action_type in never_auto",
+      "action": "禁止自执行，强制要求先生确认",
+      "after": "升级到对话中通知先生"
+    },
+    "🟡/🔴": {
+      "condition": "priority not low",
+      "action": "任何情况都需要通知先生",
+      "after": "🟡每日汇总，🔴即时推送"
+    }
+  },
+
+  "daily_limit": 5,
+  "auto_report": true
+}
