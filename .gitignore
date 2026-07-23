@@ -11,3 +11,6 @@ sessions.json
 # 临时文件
 .memory/dream.lock
 *.log
+
+# Dreaming session corpus（含对话原文，不应纳入版本控制）
+memory/.dreams/

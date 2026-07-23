@@ -1,2 +1,0 @@
-[main/sessions/main/53ecc139-85c3-404a-b252-e0d94323ff0e.jsonl#L8] Assistant: Auto Dream 流程已执行完毕（Orient → Gather → Summary）。最近 24h 无新消息，已标记待整合，将在下次主代理对话时执行 Consolidate + Prune。
-[main/sessions/main/db509dce-8964-43d1-af16-c2a789b9a9b1.jsonl#L8] Assistant: 今日备份完成：工作区干净，无新变更，无需提交和推送。

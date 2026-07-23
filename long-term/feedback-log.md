@@ -21,10 +21,10 @@
 
 ---
 
-### 2026-06-09 — 微信通道接入 [channel:weixin]
+### 2026-06-09 — 微信通道接入 [channel:weixin] [deprecated: 2026-07-22]
 - 插件：`@tencent-weixin/openclaw-weixin`
 - 扫码登录完成
-- 状态：enabled, configured, running
+- 状态：已弃用（所有推送转飞书）
 
 ---
 
