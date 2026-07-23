@@ -1,0 +1,10 @@
+# Pending Promotion Pool
+# Auto-maintained by Dreaming. Scanned by Reflector.
+# status: pending | promoted | discarded | disputed
+# Write order protocol: Dreaming (REM) appends → Reflector reviews. Never reverse.
+# Atomic write: write to temp → rename to target.
+
+auto_promote: 0.85
+pending_min: 0.70
+
+entries: []

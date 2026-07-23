@@ -382,9 +382,11 @@ spawn 子代理前：
 
 ---
 
-## 跨 Agent 协作规则
+## 跨 Agent 协作规则（三元协同流水线）
 
 > 本 Agent（main/DeepSeek）是协作系统中的主助手，负责响应先生、触发 GLM 和 Reflector、执行治理决策。
+> 旧 C+ 模式已升级为三元协同流水线，详情参见「多持久 Agent 协作架构」方案。
+> `agent-collaboration-rules.md v1.x` 已废弃。
 
 ### 0. 任务优先级分級
 

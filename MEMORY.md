@@ -1,5 +1,7 @@
 # MEMORY.md - 长期记忆索引
 
+<!-- governance: pending promotion pool at governance/pending/promotion-pool.yaml -->
+
 最后更新：2026-07-22
 
 > 四类记忆索引文件。详情见 `long-term/` 目录下的对应文件。

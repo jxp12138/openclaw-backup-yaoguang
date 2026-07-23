@@ -31,6 +31,31 @@ Reflector 第五次反思产出 G36 建议：MEMORY.md 自动 promoted 无质量
 - 冲突感知，避免决策矛盾
 
 ### 待定细节（晚间讨论）
-- [ ] 待审池文件格式和位置
+- [x] 待审池文件格式和位置（已落地：governance/pending/promotion-pool.yaml，YAML 完整读写）
 - [ ] Reflector 扫描的具体时机（和现有周扫描的关系）
 - [ ] 首轮存量清理：现有 4 条低分条目如何处理
+
+## 落地实现
+
+### 待审池
+- 文件: governance/pending/promotion-pool.yaml
+- 格式: YAML list（完整读写追加）
+- 状态机: pending → promoted / discarded / disputed
+- 生命周期:
+  - promoted: 7天后从 YAML 删除
+  - discarded: 3天后从 YAML 删除
+  - disputed: 不设自动过期，等先生裁决
+
+### 扫描
+- 频率: 每天 03:00（Reflector 现有运行时间）
+- recalls: Reflector 被动计算（关键词匹配）
+- scan 日志: governance/pending/scan-log.md（独立文件）
+
+### 阈值可配置
+auto_promote: 0.85
+pending_min: 0.70
+
+### 写入协议
+- Dreaming 先追加 → Reflector 后更新
+- 原子写：write to temp → rename to target
+- 去重：追加前比对已有条目 summary，相似 >0.8 合并
