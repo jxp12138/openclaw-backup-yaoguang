@@ -67,17 +67,10 @@
 
 ---
 
-### 2026-06-10 — Embedding 迁移 [decision:embedding-provider]
-- 旧：OpenAI（无 API key）
-- 尝试：local（node-llama-cpp 卡死）、DeepSeek（无 embedding endpoint）
-- 现：**GitHub Copilot**（text-embedding-3-small，设备登录完成）
-- 备选：Ollama
-- 选择理由：已就绪 + 零成本 + 质量好，目前够用
-
-**2026-07-12 更新 [decision:embedding-deprecated]：** embedding 模式已弃用。
-- memorySearch.provider 设为 none
-- 改用 FTS5 trigram 做中文全文检索
-- 原因：embedding 在低频个人场景下收益不大，FTS5 trigram 对中文检索够用
+### 2026-06-10 → 2026-07-12 — Embedding 尝试与弃用 [decision:embedding-provider → decision:embedding-deprecated]
+- 尝试多次均因不可用放弃（OpenAI 无 Key / local node-llama-cpp 卡死 / DeepSeek 无 endpoint）
+- 最终选用 GitHub Copilot（text-embedding-3-small）→ 07-12 整体弃用，改用 FTS5 trigram
+- 原因：低频个人场景下收益不大，FTS5 trigram 对中文检索够用
 
 ---
 

@@ -10,7 +10,8 @@
 - **姓名：** 贾夕鹏
 - **称呼：** 贾先生 / 先生
 - **时区：** Asia/Shanghai (GMT+8)
-- **运行环境：** WSL2 + OpenClaw + DeepSeek V4 Flash
+- **运行环境：** WSL2（本地开发）→ 腾讯云 Ubuntu VM（Gateway 运行）
+- **模型：** DeepSeek V4 Flash
 - **禁忌：** 不喜欢 😅 表情包
 - **通讯偏好（2026-07-22）：** 所有消息推送走飞书，不再用微信沟通
 

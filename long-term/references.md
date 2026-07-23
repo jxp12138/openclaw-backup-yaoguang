@@ -20,18 +20,14 @@
 - 不需指定 accountId（default account 即可）
 - 缺 `--to` 或 `--channel` 会导致投递失败或被拒绝
 
-### 微信通道（已弃用）
-
-- 通道仍处于 enabled 状态，但不作为消息推送目标
-- 历史配置：accountId `27437355a7fd-im-bot`（原 a156aada4521-im-bot）
-- 不会再有新的 cron 任务使用此通道投递
+### 微信通道（已弃用：2026-07-22，详情见 feedback-log.md）
 
 ### 参考链接
 - OpenClaw 安全文档：docs.openclaw.ai/gateway/security
 - Qwen API：dashscope.aliyuncs.com (国内区 Standard)
 - GitHub Copilot Embedding：text-embedding-3-small
-- HERMES Agent 记忆架构（演讲稿收录）
-- Claude Code 记忆架构（演讲稿收录）
+- HERMES Agent 记忆架构（演讲稿，路径待补充）
+- Claude Code 记忆架构（演讲稿，路径待补充）
 
 ## 服务器信息
 
