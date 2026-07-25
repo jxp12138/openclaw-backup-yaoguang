@@ -1,7 +1,7 @@
 # Feedback Log — 关键决策记录
 
 > 类型：feedback
-> 最后更新：2026-07-22
+> 最后更新：2026-07-25
 
 ---
 
@@ -109,3 +109,20 @@
 - reflector (GLM-5.1)：反思与记忆治理
 **关键设计：** 独立 workspace + handoff 文件名状态机 + agentToAgent
 **状态：** ✅ 部署完成，首次反思已产出
+
+---
+
+### 2026-07-25 — v3.1 多Agent协作架构部署 [decision:multi-agent-v3]
+**背景：** 旧三元协同流水线问题：子Agent发现丢失、治理反馈链条过长、GLM审查使用频率不达预期
+**方案：** 五个Agent + 三条路径动态路由
+- 瑶光（DeepSeek V4 Flash）：全上下文中枢 + 方案设计 + 执行
+- 探索Agent：只读环境探索（临时spawn，仅🔴）
+- GLM Agent（GLM-5.1）：半白盒方案审查（持久，仅🔴）
+- 验证Agent：黑盒落地验证（持久，🔴强制🟡可选）
+- Auditor（GLM-5.1）：黑盒系统审计A-E 20项（持久，每日03:00）
+**关键设计：** findings/缓冲区统一归档、半白盒三层审查、检查分层执行、C-007回滚升格、tentative→confirmed模式积累、reviewed_plan_version版本追踪、五层安全约束
+**部署：** 6个Agent注册（含旧reflector过渡保留）、Gateway重启
+**验证：** 🟢→🟡→🔴 全部通过
+**修复：** GitHub备份SSH修复、processed.json修复、MEMORY.md压缩、GLM AGENTS.md补全
+**状态：** ✅ v3.1 系统完整运行正常
+**待办：** 07-26 14:00 G26/G49裁决；3天后删除旧reflector cron

@@ -54,7 +54,12 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 - 所有 long-term/ 文件总计：≤ 60KB（contextInjection 总计上限）
 | 2026-07-12 20:16 | project | 瑶光记忆系统 v2.6 修复方案：Phase 1 落地，flush+snapshot+store 三脚本就绪 | project-context.md |
 | 2026-07-12 20:46 | project | 记忆系统 v2.6 Phase 1 验证测试 | project-context.md |
-| 2026-07-17 | project | 网站搭建完成 + SSH 加固 + Control UI 远程连接就绪 | project-context.md |
+| 2026-07-25 23:00 | feedback | v3.1多Agent协作系统部署、验证完成反馈 | feedback-log.md |
+  - 系统：v3.1完整路径（🟢→🟡→🔴）全部验证通过
+  - Agent：探索/验证/GLM/Auditor四个Agent + 瑶光主流程
+  - 部署：openclaw.json配置 + Gateway重启 + 6个Agent在线
+  - 修复：GitHub备份（SSH deploy key）、processed.json、MEMORY.md promoted压缩
+  - 待办：07-26 14:00 G26/G49裁决提醒
 | 2026-07-19 14:26 | feedback | 多持久Agent协作架构部署完成 | feedback-log.md |
 | 2026-07-19 14:28 | project | Reflector首次反思产出6项治理建议，G1/G3/G4/G5已执行 | project-context.md |
 | 2026-07-17 | reference | 服务器 & SSL 证书信息 | references.md |
