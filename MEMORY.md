@@ -77,22 +77,11 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 
 ## Promoted From Short-Term Memory (2026-07-24)
 
-<!-- openclaw-memory-promotion:memory:memory/2026-07-19.md:11:12 -->
-- 15:00 — 多持久Agent协作架构正式上线: **模型：** GLM-5.1（两个独立智谱API Key，分开计费） **协议：** 详细审走handoff/文件，sessions_send只发摘要 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-19.md:11-12]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-19.md:5:8 -->
-- 15:00 — 多持久Agent协作架构正式上线: 三持久Agent部署：DeepSeek (main) + GLM + Reflector; 跨Agent通信验证通过（sessions_send + handoff/ 文件名状态机）; 协作规则写入双方AGENTS.md：任务分级🔴🟡🟢、决策权边界、审查反馈闭环、防污染协议; Reflector首次反思产出优质报告（7844字节），4项治理建议已清理（G1/G3/G4/G5） [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-19.md:5-8]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-19.md:4:4 -->
-- 15:00 — 多持久Agent协作架构正式上线: **完成内容：** [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-19.md:4-4]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-19.md:9:9 -->
-- 15:00 — 多持久Agent协作架构正式上线: 架构健康度检查机制已内置，每次反思自动附带 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-19.md:9-9]
+<!-- openclaw-memory-promotion:compressed:2026-07-24 -->
+- 07-19 15:00 — 多持久Agent协作架构上线：三持久Agent部署（DeepSeek+GLM+Reflector），跨Agent通信（sessions_send+handoff/）验证通过，协作规则写入AGENTS.md，首次反思报告7944字节 [source: memory/2026-07-19.md]
 
 ## Promoted From Short-Term Memory (2026-07-25)
 
-<!-- openclaw-memory-promotion:memory:memory/2026-07-20.md:13:15 -->
-- 待办: 明天 16:30 飞书通道搭建提醒（cron 已设）; 明天先生开始设计"全能私人管家"蓝图; 技术方向：与真实物理世界连接（物联网/智能家居/自动化等） [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-20.md:13-15]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-20.md:10:10 -->
-- 19:53 — 先生提出"全能私人管家"计划: 先生表示从明天（2026-07-21）开始设计一个计划：**将瑶光打造成全能私人管家**，逐步连接真实物理世界。 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-20.md:10-10]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-20.md:3:3 -->
-- 19:15 — 记忆系统自动化脚本恢复: 恢复 session_flush.sh / session_snapshot.sh / memory_store.sh 三脚本 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-20.md:3-3]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-20.md:5:6 -->
-- 19:15 — 记忆系统自动化脚本恢复: Memory Dreaming 由 memory-core 插件 cron 处理，正常跑着; 微信通道冲突已由先生解决（本地瑶光移除微信通道） [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-20.md:5-6]
+<!-- openclaw-memory-promotion:compressed:2026-07-25 -->
+- 07-20 19:15 — 记忆系统自动化脚本恢复（session_flush/snapshot/store）; Dreaming由memory-core cron处理; 微信通道冲突已解决 [source: memory/2026-07-20.md]
+- 07-20 19:53 — 先生提出"全能私人管家"计划：将瑶光打造成全能私人管家，技术方向为IoT/智能家居/自动化 [source: memory/2026-07-20.md:10-15]
