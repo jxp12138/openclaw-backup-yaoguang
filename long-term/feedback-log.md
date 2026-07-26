@@ -68,9 +68,8 @@
 ---
 
 ### 2026-06-10 → 2026-07-12 — Embedding 尝试与弃用 [decision:embedding-provider → decision:embedding-deprecated]
-- 尝试多次均因不可用放弃（OpenAI 无 Key / local node-llama-cpp 卡死 / DeepSeek 无 endpoint）
-- 最终选用 GitHub Copilot（text-embedding-3-small）→ 07-12 整体弃用，改用 FTS5 trigram
-- 原因：低频个人场景下收益不大，FTS5 trigram 对中文检索够用
+- 尝试多方案均因不可用放弃（OpenAI 无 Key / local node-llama-cpp 卡死 / DeepSeek 无 endpoint）
+- 最终选用 GitHub Copilot（text-embedding-3-small）→ 07-12 改用 FTS5 trigram（低频场景收益不大，中文检索够用）
 
 ---
 
@@ -125,4 +124,18 @@
 **验证：** 🟢→🟡→🔴 全部通过
 **修复：** GitHub备份SSH修复、processed.json修复、MEMORY.md压缩、GLM AGENTS.md补全
 **状态：** ✅ v3.1 系统完整运行正常
-**待办：** 07-26 14:00 G26/G49裁决；3天后删除旧reflector cron
+**待办：** 3天后删除旧reflector cron（已设 07-28 提醒）
+**裁决：** G26/G49 已由先生 07-26 确认按 GLM 建议处理
+
+---
+
+### 2026-07-26 — 治理自动化 3 项边界决策 [decision:governance-boundaries]
+
+**背景：** 治理自动化三层方案经 GLM 评审后提出 3 个需先生裁决的 🔴 问题。07-26 先生确认按 GLM 建议处理。
+
+**决策内容：**
+- 自执行白名单 → 仅限无害操作（更新索引、归档日志、合并重复条目），不在白名单内即使标 🟢 也需确认
+- long-term 不可过期类别 → 先生决策记录、安全策略变更永久保留；老化基准用最后引用时间而非创建时间
+- 🟡 级通知方式 → 每日摘要，不逐条推送
+
+**后续：** 07-26 先生确认：治理自动化方案随 Reflector 一起归档，不独立落地。3 条边界规则直接写入操作规则，价值已内化。

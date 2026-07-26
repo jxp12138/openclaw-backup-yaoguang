@@ -26,8 +26,8 @@
 - OpenClaw 安全文档：docs.openclaw.ai/gateway/security
 - Qwen API：dashscope.aliyuncs.com (国内区 Standard)
 - GitHub Copilot Embedding：text-embedding-3-small
-- HERMES Agent 记忆架构（演讲稿，路径待补充）
-- Claude Code 记忆架构（演讲稿，路径待补充）
+- HERMES Agent 记忆架构 → projects/archive/yaoguang-memory-v2.md（v2设计方案含详细对比表）
+- Claude Code 记忆架构 → projects/archive/yaoguang-memory-v2.3.md（v2.3含架构特性对比表）
 
 ## 服务器信息
 

@@ -1,0 +1,18 @@
+🔔 Reflector 07-26 晨间反思完成
+关键发现：
+🔴 G26/G49 先生裁决今日到期
+裁决已超期 4 天（原 deadline 07-23 → feedback-log 写 07-26 14:00）
+3 个决策点仍待您确认：自执行白名单边界、long-term 不可过期类别、抄送方式
+如您今日 14:00 前无交互，建议升级为飞书主动推送提醒
+🔴 新发现：project-context.md「已知问题」区段空置
+上轮 G47 把全部 4 项标✅已修复，但区段名仍是 "已知问题"→名实矛盾
+建议：合并为一行已修复说明，补充当前真实已知问题
+🟡 handoff/pending-mr-decision.md 元数据矛盾
+文件标 [deprecated] 但 3 个决策点内容仍有效待裁决
+🟡 继承项 G42/G43 停滞 4 天
+references.md 弃用通道压缩 + feedback-log Embedding 条目压缩
+均在白名单内可执行，建议 DeepSeek 尽快处理
+🟡 v3.1 待办：07-28 需删除旧 reflector cron
+需设 cron 提醒防遗忘
+详细报告：reflections/2026-07-26-weekly-reflection.md
+治理建议：reflections/long-term-maintenance/2026-07-26.md
