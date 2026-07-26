@@ -87,3 +87,18 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 - # 2026-06-13 ## 定时任务 - 创建 cron「找李强老师签字提醒」854152d2 - 时间：2026-06-14 08:00 GMT+8 - 投递渠道：openclaw-weixin（announce 模式） - 一次性，执行后自动删除 ## 记忆管理系统设计完成 ### 背景 之前构建 MEMORY.md 遵循三步走框架：①划分记忆标准 ②建立记忆存储机制 ③建立流程维护机制。 先生与 DeepSeek 讨论完成了 Step 1（记忆划分标准），并与我讨论后完成了 Step 2+3 的设计融合。 ### 研究 OpenViking - 仓库：github.com/volcengine/OpenViking（25.6K stars） - 字节跳动火山引擎团队开源，Rust+Python 实现 - 核心：用文件系统范式管理 agent 上下文（viking:// 协议） - L0/L1/L2 三层上下文加载 + 会话后自动提取记忆 - 有现成的 OpenClaw 插件（contextEngine 槽位） - 基准测试：OpenClaw + OpenViking 准确率从 24% 提升至 82%，Token 降 91% - 结论：定位是高频企业级 agent，目前个人低频场景收益不大 - 但 OpenViking 的"文件系统范式"和"后置提取"思路可借鉴 ### 关键认知突破 - OpenViking... [score=0.907 recalls=4 avg=0.960 source=memory/2026-06-13.md:1-27]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-14.md:1:23 -->
 - # 2026-06-14 ## 记忆系统重构 - 先生质疑前置过滤器的必要性 → 分析 OpenClaw 自带记忆系统与我自定义系统的差异 - 结论：冲突检测、跨系统路由（memory/self-improving/proactivity）、暂存池是独有的核心价值 - 四维判断矩阵、cron 维护计划等被识别为过度设计，砍掉 - **AGENTS.md 记忆系统章节从 ~150 行精简到 ~60 行** ## Qwen 视觉模型接入 - 先生要求接入 Qwen3.6-plus 作为视觉副驾 - 方案 A：DeepSeek 做主模型 + Qwen 按需切换 - Qwen 国内区 Standard 端点配置完成 - API Key 由先生提供（sk-ws-开头） - 踩坑：sed 误替换了 models 节中的 key name，导致 UI 不显示 DeepSeek 选项 - 修复：用 python 直接操作 JSON 结构，重写 models 节 - 最终配置：`primary: deepseek/deepseek-v4-flash` + Qwen 作为视觉副驾 - Gateway 重启后正常运行 ## 确认的规则 - 决策思考 → DeepSeek V4 Flash - 看图分析 → 切 Qwen（不影响主模型） - UI 模型选单和 reasoning 选单已确认正确配置 [score=0.891 recalls=5 avg=0.855 source=memory/2026-06-14.md:1-23]
+
+## Promoted From Short-Term Memory (2026-07-27)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-20.md:1:16 -->
+- ## 19:15 — 记忆系统自动化脚本恢复 - 恢复 session_flush.sh / session_snapshot.sh / memory_store.sh 三脚本 - 已验证语法正确 - Memory Dreaming 由 memory-core 插件 cron 处理，正常跑着 - 微信通道冲突已由先生解决（本地瑶光移除微信通道） ## 19:53 — 先生提出"全能私人管家"计划 先生表示从明天（2026-07-21）开始设计一个计划：**将瑶光打造成全能私人管家**，逐步连接真实物理世界。 ### 待办 - 明天 16:30 飞书通道搭建提醒（cron 已设） - 明天先生开始设计"全能私人管家"蓝图 - 技术方向：与真实物理世界连接（物联网/智能家居/自动化等） [score=0.863 recalls=3 avg=1.000 source=memory/2026-07-20.md:1-16]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:1:6 -->
+- # 2026-07-18 日志 ## 备注 - 周六，无工作窗口（公安备案周末不办公） - 待办：周一上午提醒先生处理公安备案重新提交 [score=0.830 recalls=3 avg=1.000 source=memory/2026-07-18.md:1-6]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:17:19 -->
+- [06:39] session 结束: cron-daily-2026-07-22: 日期: 2026-07-22; 时间: 06:39; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-22.md:17-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:10:10 -->
+- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-22.md:10-10]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:27:30 -->
+- 治理框架v2落地 + 记忆系统整改: 修复Reflector delivery配置（飞书通道）; 配置22:45每日flush cron; 清理10项堆积治理（G24-G34）; 建立治理闭环v2框架（tracker/whitelist/rules） [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-22.md:27-30]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:6:9 -->
+- 每日自动Flush: 时间: 2026-07-22 06:39; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-22.md:6-9]
