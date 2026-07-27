@@ -6,6 +6,16 @@
 
 ---
 
+## 变更记录
+
+### 2026-07-27 — logrotate pattern 修正
+
+**修改内容：** logrotate 文件匹配 pattern 从 `*.log` 扩展为 `*.log *.jsonl`
+
+**原因：** 实际日志文件格式为 `.jsonl`（如 `config-audit.jsonl`），原 `*.log` pattern 无法匹配，导致 logrotate 每日轮转白跑。属于配置校正，无功能影响。
+
+---
+
 ## 一、我们要做什么
 
 在主 Agent（我，腾讯云轻量服务器 Ubuntu）上设置维护子 Agent，通过 cron 定时任务 + sessions_spawn 自动执行服务器日常维护。
