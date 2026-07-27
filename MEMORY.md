@@ -96,3 +96,16 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 <!-- openclaw-memory-promotion:merged:2026-07-27 -->
 - **07-18** 公安备案待处理（周末不办公）。[source](memory/2026-07-18.md)
 - **07-22** 每日cron/flush正常运行；治理框架v2落地（Reflector delivery修复 + 22:45 flush cron + 10项堆积清理）。[source](memory/2026-07-22.md)
+
+## Promoted From Short-Term Memory (2026-07-28)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-13.md:43:55 -->
+- ✅ memory/pending-memory.md 暂存池创建 - ✅ cron「设置cron维护任务提醒」- 95db2b33 - 时间：2026-06-20 21:00 GMT+8（下周六） - 投递：微信（announce 模式） - 内容：提醒评估是否需要注册每日/每周/每月维护任务 - 一次性，执行后自动删除 ### 备忘 - 禁止将密码等敏感信息写入记忆文件（USER.md 安全原则） - 暂存池不参与默认检索，仅正式记忆无结果时补充展示 - 前置过滤器 + 后置提取同时运行：前置兜底，后置补漏 - 下一次复盘：运行一周后评估是否需要加 cron 维护 [score=0.947 recalls=3 avg=1.000 source=memory/2026-06-13.md:43-55]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:1:58 -->
+- ## [06:39] session: cron-daily-2026-07-22 ### 每日自动Flush **自动每日检查点** - 时间: 2026-07-22 06:39 - 今日已有日志条目: 0 - 今日日志文件大小: ? - 来源: daily-flush-snapshot cron trigger - 状态: 系统正常运行 --- ## [06:39] session 结束: cron-daily-2026-07-22 每日系统检查点 - 日期: 2026-07-22 - 时间: 06:39 - 已有会话轮次: 0 - 文件大小: ? _snapshot at ## [22:23] session: agent-main-feishu ### 治理框架v2落地 + 记忆系统整改 - 修复Reflector delivery配置（飞书通道） - 配置22:45每日flush cron - 清理10项堆积治理（G24-G34） - 建立治理闭环v2框架（tracker/whitelist/rules） - GLM评审整合，先生确认实施 - 通讯渠道统一：飞书唯一通道 - 3天验证期预设（07-25 08:00报告自动推送） - 先生全能管家计划延期至07-23 17:00 ## [22:45] session: cron-daily-2026-07-22 ### 每日自动Flush **自动每日检查点** - 时间: 2026-07-22... [score=0.946 recalls=3 avg=0.974 source=memory/2026-07-22.md:1-58]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:6:9 -->
+- 每日自动Flush: 时间: 2026-07-23 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-23.md:6-9]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:10:10 -->
+- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-23.md:10-10]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:17:19 -->
+- [22:45] session 结束: cron-daily-2026-07-23: 日期: 2026-07-23; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-23.md:17-19]
