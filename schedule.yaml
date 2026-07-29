@@ -1,0 +1,9 @@
+# schedule.yaml
+# 未来扩展：支持 repeat 字段（daily/weekly/monthly），Phase 2 实现
+# 示例：- repeat: weekly, day: monday, time: "09:00", title: "站会"
+
+timezone: Asia/Shanghai
+events:
+  # - date: "2026-07-29"
+  #   time: "19:00"
+  #   title: "和同事吃饭"
