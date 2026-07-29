@@ -109,3 +109,22 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 - 每日自动Flush: 时间: 2026-07-24 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-24.md:6-9]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-24.md:17:19 -->
 - [22:45] session 结束: cron-daily-2026-07-24: 日期: 2026-07-24; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-24.md:17-19]
+
+## Promoted From Short-Term Memory (2026-07-30)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-17.md:1:18 -->
+- # 2026-07-17 日志 ## 待办 - 公安备案重新提交（被退回：网站无法打开 + 交互服务选项） - 记忆系统自动化：补 cron 任务（flush/snapshot/Auto Dream） - 修复 GitHub 备份推送 ## 备注 - 今天给先生设了 9:00 提醒，未回复处理 - 网站已可正常访问（80+443） - Control 桌面端已可通过域名接入 ## 晚间维护 (22:45) - 会话 flush + snapshot 写入完成 - 长期记忆已更新：项目上下文 + 引用信息 - MEMORY.md 索引已同步 - 全天无主动对话，先生忙 [score=0.847 recalls=3 avg=1.000 source=memory/2026-07-17.md:1-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:5:5 -->
+- 每日自动Flush: **自动每日检查点** [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-23.md:5-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:22:22 -->
+- [22:45] session 结束: cron-daily-2026-07-23: _snapshot at [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-23.md:22-22]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:14:17 -->
+- 每日自动Flush: 时间: 2026-07-25 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:14-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:4:4 -->
+- [23:33-23:45] 记忆系统老化清理 (P0) — 首次执行: **完成内容：** [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:4-4]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:18:18 -->
+- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:18-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:5:8 -->
+- [23:33-23:45] 记忆系统老化清理 (P0) — 首次执行: MEMORY.md promoted 合并：5批 → 1批按主题分类（系统建设/多Agent协作/方向），去掉了 07-23/24/25 的独立注释行; 文件大小监控表简化：去除过时的 v2.6 条目和展开详述，仅保留当前活跃条目; project-context.md 更新：v2.6引用→v3.1、v2→瑶光记忆系统、GitHub备份状态✅、已知问题清理、Phase 2 ⏳进行中; Dreaming light sleep 07-25 清理：5条低价值候选（conf<0.70, recalls=0）删除，保留高置信度条目 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:5-8]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:25:27 -->
+- [22:45] session 结束: cron-daily-2026-07-25: 日期: 2026-07-25; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:25-27]
