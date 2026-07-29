@@ -14,3 +14,5 @@ sessions.json
 
 # Dreaming session corpus（含对话原文，不应纳入版本控制）
 memory/.dreams/
+config-backup/
+snapshots/
