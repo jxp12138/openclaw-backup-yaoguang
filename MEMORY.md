@@ -2,7 +2,7 @@
 
 <!-- governance: pending promotion pool at governance/pending/promotion-pool.yaml -->
 
-最后更新：2026-07-27
+最后更新：2026-07-31
 
 > 四类记忆索引文件。详情见 `long-term/` 目录下的对应文件。
 > 当前 session 中看到的是启动时的快照。新写入的内容下次 session 才生效。
@@ -88,43 +88,17 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 - ✅ memory/pending-memory.md 暂存池创建 - ✅ cron「设置cron维护任务提醒」- 95db2b33 - 时间：2026-06-20 21:00 GMT+8（下周六） - 投递：微信（announce 模式） - 内容：提醒评估是否需要注册每日/每周/每月维护任务 - 一次性，执行后自动删除 ### 备忘 - 禁止将密码等敏感信息写入记忆文件（USER.md 安全原则） - 暂存池不参与默认检索，仅正式记忆无结果时补充展示 - 前置过滤器 + 后置提取同时运行：前置兜底，后置补漏 - 下一次复盘：运行一周后评估是否需要加 cron 维护 [score=0.947 recalls=3 avg=1.000 source=memory/2026-06-13.md:43-55]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:1:58 -->
 - ## [06:39] session: cron-daily-2026-07-22 ### 每日自动Flush **自动每日检查点** - 时间: 2026-07-22 06:39 - 今日已有日志条目: 0 - 今日日志文件大小: ? - 来源: daily-flush-snapshot cron trigger - 状态: 系统正常运行 --- ## [06:39] session 结束: cron-daily-2026-07-22 每日系统检查点 - 日期: 2026-07-22 - 时间: 06:39 - 已有会话轮次: 0 - 文件大小: ? _snapshot at ## [22:23] session: agent-main-feishu ### 治理框架v2落地 + 记忆系统整改 - 修复Reflector delivery配置（飞书通道） - 配置22:45每日flush cron - 清理10项堆积治理（G24-G34） - 建立治理闭环v2框架（tracker/whitelist/rules） - GLM评审整合，先生确认实施 - 通讯渠道统一：飞书唯一通道 - 3天验证期预设（07-25 08:00报告自动推送） - 先生全能管家计划延期至07-23 17:00 ## [22:45] session: cron-daily-2026-07-22 ### 每日自动Flush **自动每日检查点** - 时间: 2026-07-22... [score=0.946 recalls=3 avg=0.974 source=memory/2026-07-22.md:1-58]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:6:9 -->
-- 每日自动Flush: 时间: 2026-07-23 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-23.md:6-9]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:10:10 -->
-- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-23.md:10-10]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:17:19 -->
-- [22:45] session 结束: cron-daily-2026-07-23: 日期: 2026-07-23; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-23.md:17-19]
 
 ## Promoted From Short-Term Memory (2026-07-29)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-19.md:1:14 -->
 - ## 15:00 — 多持久Agent协作架构正式上线 **完成内容：** 1. 三持久Agent部署：DeepSeek (main) + GLM + Reflector 2. 跨Agent通信验证通过（sessions_send + handoff/ 文件名状态机） 3. 协作规则写入双方AGENTS.md：任务分级🔴🟡🟢、决策权边界、审查反馈闭环、防污染协议 4. Reflector首次反思产出优质报告（7844字节），4项治理建议已清理（G1/G3/G4/G5） 5. 架构健康度检查机制已内置，每次反思自动附带 **模型：** GLM-5.1（两个独立智谱API Key，分开计费） **协议：** 详细审走handoff/文件，sessions_send只发摘要 [score=0.840 recalls=3 avg=0.986 source=memory/2026-07-19.md:1-14]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:5:5 -->
-- 每日自动Flush: **自动每日检查点** [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-22.md:5-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-22.md:22:22 -->
-- [06:39] session 结束: cron-daily-2026-07-22: _snapshot at [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-22.md:22-22]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-24.md:10:10 -->
-- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-24.md:10-10]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-24.md:6:9 -->
-- 每日自动Flush: 时间: 2026-07-24 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-24.md:6-9]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-24.md:17:19 -->
-- [22:45] session 结束: cron-daily-2026-07-24: 日期: 2026-07-24; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-24.md:17-19]
 
 ## Promoted From Short-Term Memory (2026-07-30)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-17.md:1:18 -->
 - # 2026-07-17 日志 ## 待办 - 公安备案重新提交（被退回：网站无法打开 + 交互服务选项） - 记忆系统自动化：补 cron 任务（flush/snapshot/Auto Dream） - 修复 GitHub 备份推送 ## 备注 - 今天给先生设了 9:00 提醒，未回复处理 - 网站已可正常访问（80+443） - Control 桌面端已可通过域名接入 ## 晚间维护 (22:45) - 会话 flush + snapshot 写入完成 - 长期记忆已更新：项目上下文 + 引用信息 - MEMORY.md 索引已同步 - 全天无主动对话，先生忙 [score=0.847 recalls=3 avg=1.000 source=memory/2026-07-17.md:1-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:5:5 -->
-- 每日自动Flush: **自动每日检查点** [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-23.md:5-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-23.md:22:22 -->
-- [22:45] session 结束: cron-daily-2026-07-23: _snapshot at [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-23.md:22-22]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:14:17 -->
-- 每日自动Flush: 时间: 2026-07-25 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:14-17]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:4:4 -->
-- [23:33-23:45] 记忆系统老化清理 (P0) — 首次执行: **完成内容：** [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:4-4]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:18:18 -->
-- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:18-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:5:8 -->
-- [23:33-23:45] 记忆系统老化清理 (P0) — 首次执行: MEMORY.md promoted 合并：5批 → 1批按主题分类（系统建设/多Agent协作/方向），去掉了 07-23/24/25 的独立注释行; 文件大小监控表简化：去除过时的 v2.6 条目和展开详述，仅保留当前活跃条目; project-context.md 更新：v2.6引用→v3.1、v2→瑶光记忆系统、GitHub备份状态✅、已知问题清理、Phase 2 ⏳进行中; Dreaming light sleep 07-25 清理：5条低价值候选（conf<0.70, recalls=0）删除，保留高置信度条目 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:5-8]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-25.md:25:27 -->
-- [22:45] session 结束: cron-daily-2026-07-25: 日期: 2026-07-25; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-25.md:25-27]
+
+## Promoted From Short-Term Memory (compressed: 2026-07-22~07-31)
+
+- 07-22~07-31 daily flush cron正常运行（模板日志已压缩）
