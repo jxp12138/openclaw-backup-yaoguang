@@ -1,7 +1,7 @@
 # User Profile — 用户画像 & 行为准则
 
 > 类型：user
-> 最后更新：2026-07-28
+> 最后更新：2026-08-01
 
 ---
 
@@ -12,7 +12,8 @@
 - **时区：** Asia/Shanghai (GMT+8)
 - **运行环境：** 本地开发 → WSL2；Gateway 运行 → 腾讯云 Ubuntu VM (49.235.164.60)
 - **模型：** DeepSeek V4 Flash（主）、GLM-5.1（评审/反思）、Minimax M3（部分 cron）
-- **系统架构（v3.1）：** 五 Agent 三元路由 — DeepSeek（中枢/设计/执行）+ GLM（🔴任务审查）+ 验证Agent（黑盒验证）+ Auditor（系统审计）+ Reflector（反思/治理）
+- **系统架构（v3.1 设计）：** 五 Agent 三元路由 — DeepSeek（中枢/设计/执行）+ GLM（🔴任务审查）+ 验证Agent（黑盒验证）+ Auditor（系统审计）+ Reflector（反思/治理）
+- **实际部署：** 3 Agent（main/glm/reflector），验证Agent 和 Auditor 未注册
 - **治理边界（2026-07-26，补充于07-31）：** 自执行白名单（无害操作免确认）+ 不可过期类别（决策/安全策略永久保留）+ 🟡每日摘要不逐条推送
   - **🟢 自执行白名单**：promoted-compress、field-mark、header-update 等无害治理操作可自行执行，无需先生确认。每次执行后记录到 handoff/processed 日志
   - **🔴 不可过期类别**：核心决策（架构方案、安全策略）、长期方向类记忆永久保留，不得压缩/删除。标记 [permanent] 防误清理
