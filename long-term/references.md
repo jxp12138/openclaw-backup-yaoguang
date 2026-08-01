@@ -1,7 +1,7 @@
 # References — 外部引用
 
 > 类型：reference
-> 最后更新：2026-07-27
+> 最后更新：2026-08-02
 
 ---
 
@@ -26,8 +26,14 @@
 - OpenClaw 安全文档：docs.openclaw.ai/gateway/security
 - Qwen API：dashscope.aliyuncs.com (国内区 Standard)
 - GitHub Copilot Embedding：text-embedding-3-small
-- HERMES Agent 记忆架构 → projects/archive/yaoguang-memory-v2.md（v2设计方案含详细对比表）
-- Claude Code 记忆架构 → projects/archive/yaoguang-memory-v2.3.md（v2.3含架构特性对比表）
+
+### 内部项目文件
+- 记忆系统最终方案：projects/yaoguang-memory-v2.4.md
+- HERMES Agent 记忆架构：projects/archive/yaoguang-memory-v2.md（v2设计方案含详细对比表）
+- Claude Code 记忆架构：projects/archive/yaoguang-memory-v2.3.md（v2.3含架构特性对比表）
+- 项目全景盘点：project-inventory.md（2026-07-31）
+- 治理白名单：governance/whitelist.json
+- 治理规则：governance/rules.md
 
 ## 服务器信息
 
