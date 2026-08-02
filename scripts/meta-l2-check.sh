@@ -16,6 +16,23 @@ TODAY=$(date '+%Y-%m-%d')
 ISSUES=""
 COUNT=0
 
+# ——— 0. 日期解析自检（P9 修复，LESSON-001 教训） ———
+# 启动即验证日期解析逻辑，异常则中止告警，避免 2008-02 类错误静默污染检查结果
+SELFCHECK=$(date -d "2026-08-02" +%s 2>/dev/null)
+if [ -z "$SELFCHECK" ] || [ "$SELFCHECK" -eq 0 ] 2>/dev/null; then
+  echo "🔴 L2 中止：日期解析自检失败（date -d 不可用或异常），请检查系统环境后重试"
+  exit 1
+fi
+# 验证 "2026-MM-DD" 拼接格式
+TEST_TS=$(date -d "2026-$(date '+%m-%d')" +%s 2>/dev/null)
+if [ -z "$TEST_TS" ]; then
+  echo "🔴 L2 中止：日期解析自检失败（2026-MM-DD 拼接异常），请检查脚本日期逻辑"
+  exit 1
+fi
+if [ "$TEST_TS" -gt "$(date +%s)" ]; then
+  echo "⚠️ L2 警告：日期解析结果在未来（拼接格式可能错误），请人工复核"
+fi
+
 echo "🔍 【元管理层 L2 一致性检查】$TODAY"
 
 # ——— 1. 漂移超时检查 ———

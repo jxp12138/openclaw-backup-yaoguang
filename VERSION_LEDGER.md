@@ -17,10 +17,15 @@
 | DRIFT-002 | COGN | 08-01 20:00 验证 cron 已就位 | cron 不存在（从未创建） | 🔴 声称未建 | 改手动检查点：08-02 已人工验证，Phase 2 决策由先生定 | 瑶光 | 处理中 | 08-02 |
 | DRIFT-003 | EXEC | 微信通道已移除 | 12 个 disabled cron 残留 | 🟡 残留未清 | 批量删除 disabled 微信投递 cron | 瑶光 | 待处理 | 08-02 |
 | DRIFT-004 | COGN | v2.6-final 为当前版 | projects/archive/ 10 份旧版并存 | 🟡 版本堆积 | 归档整理（保留 v2.6-final 于根目录） | 瑶光 | 待处理 | 08-02 |
-| DRIFT-005 | META | openclaw.json 当前配置 | 8 份 .bak/.clobbered/.last-good 残留 | 🟡 残留未清 | 保留最近 2 份（.last-good + 最新 .bak），其余归档 | 瑶光 | 待处理 | 08-02 |
+| DRIFT-005 | META | openclaw.json 当前配置 | 8 份备份残留（.backup/.bak/.bak.1-4/.clobbered/.last-good）+ 1 份当前本体，共 9 个文件 | 🟡 残留未清 | 保留最近 2 份（.last-good + 最新 .bak），其余归档 | 瑶光 | 待处理 | 08-02 |
 | DRIFT-006 | META | project-overview.md 声称"08-01 20:00 验证期检查 cron 已就位" | 该 cron 从未创建（07-29 文档 → 08-01 实测缺失） | 🔴 声称未建 | 已在 DRIFT-002 合并处理；文档已修正 | 瑶光 | 处理中 | 08-02 |
 | DRIFT-007 | 全部 | 根目录版本文档堆积 | 多Agent方案 v1/v2/v3/最终 4 版 + 记忆架构 5+ 版 + 备份方案多版并存 | 🟡 版本堆积 | 归档整理（保留最终版，旧版移 archive/） | 瑶光 | 待处理 | 08-02 |
 | DRIFT-008 | COGN | MEMORY.md promotion 三层分流规则已定（≥0.85 自动提升 / 0.70-0.85 进待审池 / <0.70 丢弃；待审池超1周+recalls=0 自动删除） | promotion-pool.yaml entries=[] 从未运转；低分条目绕过待审池直接进 MEMORY.md（15→21条膨胀） | 🔴 规则未执行 | 修 Dreaming/Reflector 接入待审池，首轮存量清理待先生确认 | 瑶光 | 待处理 | 08-02 |
+| DRIFT-009 | COGN | G64 promotion 阈值待决策（0.85 vs 0.90） | 07-31 inventory 记载，reflections 显示已堆积 8+ 天未决 | 🟡 待决策 | 并入 DEC-009（Phase 2 讨论时先生定） | 先生 | 待处理 | 08-02 |
+| DRIFT-010 | COGN | 记忆老化回收机制应存在 | dreaming/light/ 07-19~07-24 低价值候选残留超 7 天未清除（08-01 验证确认），无自动老化机制 | 🔴 机制缺失 | 并入 DEC-009（Phase 2 开启老化自动化） | 瑶光 | 待处理 | 08-02 |
+| DRIFT-011 | EXEC | agent-collaboration-rules.md 已声明废弃（v1.x） | 仍占 40KB 存根目录 | 🟡 残留未清 | 移入 archive/ 或删除（保留 git 历史） | 瑶光 | 待处理 | 08-02 |
+| DRIFT-012 | EXEC | G74 Reflector cron 退役执行方案已产出 | pending 状态，未执行（reflections 08-02 显示堆积 2 天） | 🟡 待执行 | 与 DRIFT-001 合并处理（第 6 步） | 瑶光 | 待处理 | 08-02 |
+| DRIFT-013 | 全部 | 治理建议堆积应被及时处理 | G45/G46/G72/G74 等 pending 项堆积超时（G45/G46 已 8 天），DeepSeek 多日未读取执行 | 🟡 流程失效 | L2 升级机制覆盖：超时自动进 findings；周报点名 | 瑶光 | 待处理 | 08-02 |
 
 > 注：DRIFT-008 来源为先生回忆（2026-08-02），已与 governance/pending/promotion-quality-plan.md 及 promotion-pool.yaml 实测互证。
 
@@ -28,9 +33,29 @@
 
 ## 二、漂移率
 
-- 当前：7 条漂移，0 已解决 → **漂移率 100%**（Day1 基线，符合预期）
-- 目标：一次性清理后 ≤20%（即 ≤1 条未解决）
+- 当前：13 条漂移，0 已解决 → **漂移率 100%**（Day1 基线，符合预期）
+- 目标：一次性清理后 ≤20%（即 ≤2 条未解决）
 - 计算方法：未解决漂移项 / 漂移项总数
+
+## 二·补、补课复核记录（P4，08-02 19:15）
+
+**信息源覆盖对账（9 个信息源）：**
+
+| 信息源 | 覆盖 | 提取问题 | 入账编号 |
+|--------|:----:|---------|:--------:|
+| 1. 07-31 inventory | ✅ | 待审池未运转/G64/老化/agent-rules/验证cron | DRIFT-008~011/006 |
+| 2. 08-01 验证报告 | ✅ | 老化回收失败/验证cron缺失 | DRIFT-010/002 |
+| 3. governance/tracker | ✅ | 11 项均已 executed/acknowledged，无遗留 | — |
+| 4. handoff/ 未解决 | ✅ | 治理自动化 3 决策点（v3.1 后已归档）/验证Agent安全选型 | 已归档/已决 |
+| 5. reflections 最近 | ✅ | G74/G45/G46/G72 堆积 | DRIFT-012/013 |
+| 6. verification-report | ✅ | 07-25 验证通过，无遗留 | — |
+| 7. long-term/project-context | ✅ | 公安备案待提交（已登记网站项目） | 已覆盖 |
+| 8. git log/文件时间戳 | ✅ | 版本堆积/配置残留 | DRIFT-004/005/007 |
+| 9. 先生回忆 | ✅ | promotion 补丁 | DRIFT-008 |
+
+**覆盖率：** 9/9 信息源覆盖，提取已知问题 13 项，全部入账 → **覆盖率 100%**（目标 ≥90% ✅）
+
+**遗留说明：** handoff 中 2026-07-22-pending-mr-decision（治理自动化 3 决策点）标注"系统已升级 v3.1"，治理自动化已 07-26 归档，视为已决；验证Agent安全控制选型（B+沙箱）已在 designs/ 体现，视为已决。
 
 ---
 
