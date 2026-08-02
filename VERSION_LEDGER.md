@@ -20,6 +20,9 @@
 | DRIFT-005 | META | openclaw.json 当前配置 | 8 份 .bak/.clobbered/.last-good 残留 | 🟡 残留未清 | 保留最近 2 份（.last-good + 最新 .bak），其余归档 | 瑶光 | 待处理 | 08-02 |
 | DRIFT-006 | META | project-overview.md 声称"08-01 20:00 验证期检查 cron 已就位" | 该 cron 从未创建（07-29 文档 → 08-01 实测缺失） | 🔴 声称未建 | 已在 DRIFT-002 合并处理；文档已修正 | 瑶光 | 处理中 | 08-02 |
 | DRIFT-007 | 全部 | 根目录版本文档堆积 | 多Agent方案 v1/v2/v3/最终 4 版 + 记忆架构 5+ 版 + 备份方案多版并存 | 🟡 版本堆积 | 归档整理（保留最终版，旧版移 archive/） | 瑶光 | 待处理 | 08-02 |
+| DRIFT-008 | COGN | MEMORY.md promotion 三层分流规则已定（≥0.85 自动提升 / 0.70-0.85 进待审池 / <0.70 丢弃；待审池超1周+recalls=0 自动删除） | promotion-pool.yaml entries=[] 从未运转；低分条目绕过待审池直接进 MEMORY.md（15→21条膨胀） | 🔴 规则未执行 | 修 Dreaming/Reflector 接入待审池，首轮存量清理待先生确认 | 瑶光 | 待处理 | 08-02 |
+
+> 注：DRIFT-008 来源为先生回忆（2026-08-02），已与 governance/pending/promotion-quality-plan.md 及 promotion-pool.yaml 实测互证。
 
 ---
 
