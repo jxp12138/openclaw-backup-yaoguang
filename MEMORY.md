@@ -126,3 +126,16 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 - 每日自动Flush: 时间: 2026-07-28 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-28.md:6-9]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-28.md:10:10 -->
 - 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-28.md:10-10]
+
+## Promoted From Short-Term Memory (2026-08-03)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:22:22 -->
+- [22:45] session 结束: cron-daily-2026-07-27: _snapshot at [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-27.md:22-22]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:5:5 -->
+- 每日自动Flush: **自动每日检查点** [score=0.811 recalls=0 avg=0.620 source=memory/2026-07-27.md:5-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-29.md:6:9 -->
+- 每日自动Flush: 时间: 2026-07-29 22:45; 今日已有日志条目: 0; 今日日志文件大小: ?; 来源: daily-flush-snapshot cron trigger [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-29.md:6-9]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-29.md:17:19 -->
+- [22:45] session 结束: cron-daily-2026-07-29: 日期: 2026-07-29; 时间: 22:45; 已有会话轮次: 0 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-29.md:17-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-29.md:10:10 -->
+- 每日自动Flush: 状态: 系统正常运行 [score=0.803 recalls=0 avg=0.620 source=memory/2026-07-29.md:10-10]
