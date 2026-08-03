@@ -66,6 +66,13 @@
 - **最近变更：** 07-18 网站完成；备案被退回待重提
 - **下一步：** 先生操作备案重提（约 15 分钟）
 
+### [INFRA] 系统基础设施 — 类型：基础设施
+- **阶段：运行（阶段 3 登记，2026-08-04）**
+- **依赖：** 上游=无；下游=全部项目（运行底座）
+- **负责人：** 瑶光维护 / 先生审阅
+- **最近变更：** 08-04 阶段 3 登记（24 项：21 项差异清单原分类 + 3 项灰区转入：8.2 备案 / G9 腾讯云 / G10 管家蓝图）
+- **下一步：** 随元管理层维护；8.2 备案待先生操作；灰区已归零（GLM 08-03 评审修正）
+
 ---
 
 ## 二、依赖关系图
@@ -91,13 +98,18 @@ COGN Phase 2 ──等待验证结果决策 ────────────
 | 设计 | 第零章、3-A |
 | 落地 | META、EXEC |
 | 验证 | SAFE、COGN |
-| 运行 | EVOL、网站 |
+| 运行 | EVOL、网站、系统基础设施（INFRA） |
 | 退役 | — |
 | 归档 | 地图子代理、治理自动化 |
 
 ---
 
 ## 四、变更记录（追加式）
+
+### 08-04 — 阶段 3 基准建立
+- 先生三项确认（08-04 07:08）：reflector 留第 6 步不进 archive / 引用不处理 / 授权阶段 3
+- 🟢 11 项（9 组 18 文件）移 archive/；🔵 24 项保留并新增 [INFRA] 系统基础设施条目；🔴 2 项补丁回写 COGN 基准文档
+- 账本同步：DRIFT-004/007/011 → 已解决；漂移率 78.6% → 57.1%（剩余 8 项挂第 6 步 / Phase 2 决策）
 
 ### 08-02 — 建图
 - 升级自 project-inventory.md（07-31 盘点），补全第零章/3-A/网站备案条目
@@ -135,3 +147,44 @@ COGN Phase 2 ──等待验证结果决策 ────────────
 | 8. 网站+备案 | 无 |
 
 > 阶段 1 访谈完成（2026-08-03 23:26）：8 项目基准 ✅ + 补丁确认完成
+> 阶段 3 执行完成（2026-08-04）：🟢 残留归档 / 🔵 基础设施登记 / 🔴 补丁回写 / 账本更新 → **基准正式建立**
+
+---
+
+## 六、系统基础设施明细（阶段 3 登记，2026-08-04）
+
+> 来源：output/阶段2-差异清单.md 🔵 分类（GLM 08-03 评审修正：灰区归零，3 项转入 🔵）
+> 共 24 项 = 项目级 13 项 + 全局 G1-G11 共 11 项（含灰区转入 G9/G10 + 8.2）
+
+### 项目级（13 项）
+
+| 项目 | 条目 |
+|------|------|
+| META | 1.3 元管理层-v1.1-最终方案.md（行动路线引用的前序原件） |
+| EXEC | 2.4 designs/ 子 Agent 设计 4 份（glm/verifier/explorer/auditor）· 2.5 designs/总方案v3.1最终修正版.md · 2.6 findings/ 目录 · 2.7 agents 注册（main/glm/reflector） |
+| SAFE | 3.1 scripts/daily-git-backup.sh + pre-change-snapshot.sh · 3.2 cron c115d7b1（yg-knowledge Git 备份）· 3.3 cron 11bfec4b（23:00）+ 0b4db202（周日 20:00）· 3.4 备份验证机制 |
+| COGN | 4.3 governance/pending/ 4 文件（promotion-pool.yaml/plan/quality-plan/scan-log） |
+| EVOL | 5.1 skills/self-improving-agent + self-improving + ~/self-improving/ · 5.2 skills/proactivity + skill-vetter |
+| 网站 | 8.1 网站运行状态（nginx + /var/www/html） |
+
+### 全局基础设施（G1-G11 共 11 项，含灰区转入 G9/G10）
+
+| 条目 | 内容 |
+|------|------|
+| G1 | openclaw.json models（deepseek/qwen/minimax/zhipu 多 provider） |
+| G2 | channels：feishu（main+glm 双账号）/ telegram / openclaw-weixin |
+| G3 | agents 注册（main/glm/reflector）+ 权限配置 |
+| G4 | plugins：memory-core/workboard/weixin/telegram/feishu |
+| G5 | cron 投递 announce → feishu（9 个 cron 中 6 个） |
+| G6 | 运维 cron：安全更新检查 c6b3e2b4 / 日志清理 e524abe7 / 健康检查 3b88de2e |
+| G7 | scripts/：daily-flush-snapshot / session_flush / session_snapshot / memory_store / meta-l2-check |
+| G8 | skills/proactivity + skill-vetter（同 5.2） |
+| G9 | tencent-cloud-agent-plan.md（灰区转入 🔵） |
+| G10 | 瑶光·全能私人管家蓝图 output/ 3 份（灰区转入 🔵，暂停项目设计文档保留） |
+| G11 | project-overview.md + project-inventory.md（PROJECT_MAP 前身，历史参考） |
+
+### 灰区转入的外部任务（1 项）
+
+| 条目 | 内容 |
+|------|------|
+| 8.2 | 公安备案（灰区转入 🔵 外部任务，保留观察至先生操作） |
