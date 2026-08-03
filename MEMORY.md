@@ -2,7 +2,7 @@
 
 <!-- governance: pending promotion pool at governance/pending/promotion-pool.yaml -->
 
-最后更新：2026-07-31
+最后更新：2026-08-03
 
 > 四类记忆索引文件。详情见 `long-term/` 目录下的对应文件。
 > 当前 session 中看到的是启动时的快照。新写入的内容下次 session 才生效。
@@ -15,15 +15,15 @@
 
 ## 💬 feedback — 关键决策记录
 
-- [feedback-log.md](long-term/feedback-log.md) — Gateway 加固、微信接入、技能安装、Workboard、记忆系统设计、Qwen 接入、Embedding 迁移（含标签和时间戳）
+- [feedback-log.md](long-term/feedback-log.md) — Gateway 加固、微信接入、技能安装、Workboard、记忆系统设计、Qwen 接入、Embedding 迁移、多Agent协作、治理边界、团队定位、元管理层落地（含标签和时间戳）
 
 ## 📋 project — 项目上下文
 
-- [project-context.md](long-term/project-context.md) — MEMORY.md 建设路线、定期复盘、已知优化点、活跃项目（含已归档地图子代理）
+- [project-context.md](long-term/project-context.md) — MEMORY.md 建设路线、定期复盘、已知优化点、活跃项目（记忆系统+元管理层+网站）
 
 ## 🔗 reference — 外部引用
 
-- [references.md](long-term/references.md) — 微信 cron 配置、参考链接
+- [references.md](long-term/references.md) — 飞书通道配置、服务器信息、SSL证书、内部项目文件路径、参考链接
 
 ---
 
