@@ -26,7 +26,7 @@
 | DRIFT-011 | EXEC | agent-collaboration-rules.md 已声明废弃（v1.x） | 仍占 40KB 存根目录 | 🟡 残留未清 | 移入 archive/ 或删除（保留 git 历史） | 瑶光 | 待处理 | 08-02 |
 | DRIFT-012 | EXEC | G74 Reflector cron 退役执行方案已产出 | pending 状态，未执行（reflections 08-02 显示堆积 2 天） | 🟡 待执行 | 与 DRIFT-001 合并处理（第 6 步） | 瑶光 | 待处理 | 08-02 |
 | DRIFT-013 | 全部 | 治理建议堆积应被及时处理 | G45/G46/G72/G74 等 pending 项堆积超时（G45/G46 已 8 天），DeepSeek 多日未读取执行 | 🟡 流程失效 | L2 升级机制覆盖：超时自动进 findings；周报点名；08-03 先生裁决：G77 合并为单条 done 归入本项 | 瑶光 | 待处理 | 08-02 |
-| DRIFT-014 | SAFE | yg-knowledge Git 备份 cron 应正常每日运行 | cron c115d7b1 显示 error(4x)、last 18h ago（08-02 修复 timeout 60→300 后 08-03 04:00 仍报 error？） | 🟡 异常待诊断 | 诊断：修复是否生效 / 是否属预期（无变更时 model-call 中止）；必要时并入第 6 步清理 | 瑶光 | 待处理 | 08-03 |
+| DRIFT-014 | SAFE | yg-knowledge Git 备份 cron 应正常每日运行 | cron c115d7b1 曾连续 error(4x)：timeoutSeconds=60 太短，agent 执行 git 命令后生成最终回复时被 60s 超时中止（lastDurationMs≈60.1s） | ✅ 已解决 | 08-02 23:47 已修复 timeout 60→300；08-03 23:31 force 验证：完整链路 54s 正常完成，state=ok，consecutiveErrors=0 | 瑶光 | 已解决 | 08-03 |
 
 > 注：DRIFT-008 来源为先生回忆（2026-08-02），已与 governance/pending/promotion-quality-plan.md 及 promotion-pool.yaml 实测互证。
 
@@ -34,7 +34,7 @@
 
 ## 二、漂移率
 
-- 当前：14 条漂移（13 + DRIFT-014），2 已解决（DRIFT-009/003）→ **漂移率 85.7%**
+- 当前：14 条漂移，3 已解决（DRIFT-009/003/014）→ **漂移率 78.6%**
 - 目标：一次性清理后 ≤20%（即 ≤3 条未解决）
 - 计算方法：未解决漂移项 / 漂移项总数
 
@@ -94,3 +94,10 @@
 - **DRIFT-014 新建**：yg-knowledge Git 备份 cron（c115d7b1）error(4x) 待诊断（08-02 timeout 修复后仍报错？）
 - **DRIFT-013 补充**：G77 合并为单条 done 归入本项（先生裁决）
 - 另：G65/G76 补记 processed.json；6.2 批量清理日例外放弃不写入 rules.md（先生裁决）
+
+### 08-03 23:31 — DRIFT-014 诊断完成 → 已解决
+- **根因**：timeoutSeconds=60 太短——agent 执行 git 命令成功后，生成最终回复时被 60s 超时中止（lastDurationMs≈60.1s，error="job execution timed out (last phase: model-call-started)"）
+- **修复**：08-02 23:47 已将 timeout 60→300（updatedAt 08-03 07:47 生效）
+- **验证**：08-03 23:31 force 运行完整链路 54s 正常完成（工作区无变更，main/origin 同步），state=ok，consecutiveErrors=0
+- **结论**：简单问题（timeout 未生效），已顺手修复，不留给第 6 步
+- 下次定时运行 08-04 04:00 自然验证
