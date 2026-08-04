@@ -106,3 +106,8 @@ spawn 子代理前，先 `read` 本索引和相关 `long-term/` 文件，将记�
 ## Promoted From Short-Term Memory (cleaned: 2026-08-03)
 
 - 08-01~08-03 三批 daily flush 模板日志（14 条，score 0.803/0.811）已清理：G64 阈值 0.80→0.85 生效，recalls=0 的模板日志不再 promoted
+
+## Promoted From Short-Term Memory (2026-08-05)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01.md:1:19 -->
+- # 2026-08-01 日志 ## [08:15] 晨间检查（heartbeat 主动核查） **备份体系验证通过 ✅**：~/.openclaw/backups/daily/ 下 sessions-20260801.db 已产出（07-29 落地后首个完整日周期验证）——之前 project-inventory 里标"待验证"的事项已闭环。 **reflector 仍存活 ⚠️**：08-01 03:01 再次产出 2026-08-01-weekly-reflection.md。本应 07-28 退役，已逾期 4 天。今日与先生讨论全局治理时作为头号案例。 **今日待办（先生昨晚确认）：** 1. 先生主导全局项目关系整理（输入材料：project-inventory.md 已备） 2. 反馈机制设计（台账+检查点） 3. 阶段衔接机制（生命周期状态机） ## [20:12] 记忆系统完整生命周期验证（cron 触发，7天验证期结束） ### 验证结果汇总 1. **老化回收** ❌：dreaming/light/ 07-19~07-24 低价值候选（conf 0.62, recalls=0, staged）残留超 7 天未清除；07-29 曾手动清理过一次（rem 有记录），无自动老化机制 2.... [score=0.866 recalls=3 avg=0.995 source=memory/2026-08-01.md:1-19]
