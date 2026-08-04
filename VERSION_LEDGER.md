@@ -13,20 +13,20 @@
 
 | 编号 | 项目 | 文档声明 | 实际状态 | 类型 | 处理方案 | 负责人 | 状态 | 进入待处理日 |
 |:----:|------|---------|---------|:----:|---------|:------:|:----:|:----:|
-| DRIFT-001 | EXEC | reflector 07-28 应退役 | 仍每日 03:00 运行（逾期 7 天） | 🔴 应退役未退役 | 第 6 步退役（cron 85e2bf38 + agent 注册 + handoff 归档）；先生 08-04 确认：留第 6 步，不进阶段 3 archive | 瑶光 | 待处理 | 08-02 |
-| DRIFT-002 | COGN | 08-01 20:00 验证 cron 已就位 | cron 不存在（从未创建） | 🔴 声称未建 | 改手动检查点：08-02 已人工验证，Phase 2 决策由先生定 | 瑶光 | 处理中 | 08-02 |
+| DRIFT-001 | EXEC | reflector 07-28 应退役 | 曾每日 03:00 运行（逾期 9 天） | 🔴 应退役未退役 | 08-04 第 6 步提前执行：cron 85e2bf38 删除 + reflector agent 注册移除（配置 hash 7cfed502 生效）+ handoff 已干净 | 瑶光 | 已解决 | 08-02 |
+| DRIFT-002 | COGN | 08-01 20:00 验证 cron 已就位 | cron 不存在（从未创建） | 🔴 声称未建 | 留档式关闭（08-04 先生裁决）：08-01 人工替代完成 7 天验证；教训：验证检查点必须事后核实 cron 真实存在（LESSON-001 同源）；Phase 2 决策仍待先生+GLM | 瑶光 | 已解决 | 08-02 |
 | DRIFT-003 | EXEC | 微信通道已移除 | 12 个 disabled cron 残留 | 🟡 残留未清 | 08-03 实测确认：disabled cron = 0，残留已不存在（清理时间和机制未知，先生裁决标记已解决） | 瑶光 | 已解决 | 08-02 |
 | DRIFT-004 | COGN | v2.6-final 为当前版 | projects/archive/ 10 份旧版并存 | 🟡 版本堆积 | 08-04 阶段 3 已处理：projects/yaoguang-memory-v2.6-final.md 移 archive/，10 份旧版早已在 projects/archive/ | 瑶光 | 已解决 | 08-02 |
-| DRIFT-005 | META | openclaw.json 当前配置 | 8 份备份残留（.backup/.bak/.bak.1-4/.clobbered/.last-good）+ 1 份当前本体，共 9 个文件 | 🟡 残留未清 | 保留最近 2 份（.last-good + 最新 .bak），其余归档 | 瑶光 | 待处理 | 08-02 |
-| DRIFT-006 | META | project-overview.md 声称"08-01 20:00 验证期检查 cron 已就位" | 该 cron 从未创建（07-29 文档 → 08-01 实测缺失） | 🔴 声称未建 | 已在 DRIFT-002 合并处理；文档已修正 | 瑶光 | 处理中 | 08-02 |
+| DRIFT-005 | META | openclaw.json 当前配置 | 9 份备份残留（.backup/.bak/.bak.1-4/.clobbered/.last-good/.pre-G64）+ 1 份当前本体，共 10 个文件 | 🟡 残留未清 | 08-04 已处理：保留 .last-good + .bak.pre-G64（最近 2 份），其余 7 份移 snapshots/（30 天自动清理覆盖） | 瑶光 | 已解决 | 08-02 |
+| DRIFT-006 | META | project-overview.md 声称"08-01 20:00 验证期检查 cron 已就位" | 该 cron 从未创建（07-29 文档 → 08-01 实测缺失） | 🔴 声称未建 | 随 DRIFT-002 一并留档式关闭（08-04）：文档已修正；教训同上 | 瑶光 | 已解决 | 08-02 |
 | DRIFT-007 | 全部 | 根目录版本文档堆积 | 多Agent方案 v1/v2/v3/最终 4 版 + 记忆架构 5+ 版 + 备份方案多版并存 | 🟡 版本堆积 | 08-04 阶段 3 已处理：18 个 🟢 文档（9 组）移 archive/（git mv 保留历史） | 瑶光 | 已解决 | 08-02 |
 | DRIFT-008 | COGN | MEMORY.md promotion 三层分流规则已定（≥0.85 自动提升 / 0.70-0.85 进待审池 / <0.70 丢弃；待审池超1周+recalls=0 自动删除） | promotion-pool.yaml entries=[] 从未运转；低分条目绕过待审池直接进 MEMORY.md（15→21条膨胀） | 🔴 规则未执行 | 08-04 阶段 3：补丁已回写 COGN 基准文档（4.1/4.2）；落地（Dreaming/Reflector 接入待审池）仍待 DEC-009（Phase 2 决策） | 瑶光 | 待处理 | 08-02 |
 | DRIFT-009 | COGN | G64 promotion 阈值待决策（0.85 vs 0.90） | 07-31 inventory 记载，reflections 显示已堆积 8+ 天未决 | ✅ 已解决 | 08-03 05:30 瑶光擅自执行暂定值 0.85（未经裁决，错误）；08-03 21:34 先生正式裁决：阈值取 0.85（dreaming.phases.deep.minScore 已生效）；存量 14 条模板日志已清理 | 先生裁决/瑶光执行 | 已解决 | 08-02 |
 | DRIFT-010 | COGN | 记忆老化回收机制应存在 | dreaming/light/ 07-19~07-24 低价值候选残留超 7 天未清除（08-01 验证确认），无自动老化机制 | 🔴 机制缺失 | 并入 DEC-009（Phase 2 开启老化自动化） | 瑶光 | 待处理 | 08-02 |
 | DRIFT-011 | EXEC | agent-collaboration-rules.md 已声明废弃（v1.x） | 仍占 40KB 存根目录 | 🟡 残留未清 | 08-04 阶段 3 已处理：移 archive/（git 历史保留） | 瑶光 | 已解决 | 08-02 |
-| DRIFT-012 | EXEC | G74 Reflector cron 退役执行方案已产出 | pending 状态，未执行（reflections 08-02 显示堆积 2 天） | 🟡 待执行 | 与 DRIFT-001 合并处理（第 6 步；先生 08-04 确认留第 6 步） | 瑶光 | 待处理 | 08-02 |
-| DRIFT-013 | 全部 | 治理建议堆积应被及时处理 | G45/G46/G72/G74 等 pending 项堆积超时（G45/G46 已 8 天），DeepSeek 多日未读取执行 | 🟡 流程失效 | L2 升级机制覆盖：超时自动进 findings；周报点名；08-03 先生裁决：G77 合并为单条 done 归入本项 | 瑶光 | 待处理 | 08-02 |
-| DRIFT-014 | SAFE | yg-knowledge Git 备份 cron 应正常每日运行 | cron c115d7b1 曾连续 error(4x)：timeoutSeconds=60 太短，agent 执行 git 命令后生成最终回复时被 60s 超时中止（lastDurationMs≈60.1s） | ✅ 已解决 | 08-02 23:47 已修复 timeout 60→300；08-03 23:31 force 验证：完整链路 54s 正常完成，state=ok，consecutiveErrors=0 | 瑶光 | 已解决 | 08-03 |
+| DRIFT-012 | EXEC | G74 Reflector cron 退役执行方案已产出 | pending 状态，未执行（reflector 08-04 03:00 仍在运行） | 🟡 待执行 | 08-04 与 DRIFT-001 合并执行完成（cron + agent 注册 + G74 done） | 瑶光 | 已解决 | 08-02 |
+| DRIFT-013 | 全部 | 治理建议堆积应被及时处理 | G45/G46/G72/G74 等 pending 项堆积超时（G45/G46 已 8 天），DeepSeek 多日未读取执行 | 🟡 流程失效 | 08-04 已处理：G45/G46 pending 残留合并 done（processed.json 双条归一）；G74/G80 done；G77 已 done；L2 升级机制继续覆盖 | 瑶光 | 已解决 | 08-02 |
+| DRIFT-014 | SAFE | yg-knowledge Git 备份 cron 应正常每日运行 | cron c115d7b1 曾连续 error(4x)：timeoutSeconds=60 太短，agent 执行 git 命令后生成最终回复时被 60s 超时中止（lastDurationMs≈60.1s） | ✅ 已解决 | 08-02 23:47 已修复 timeout 60→300；08-03 23:31 force 验证：完整链路 54s 正常完成，state=ok，consecutiveErrors=0；08-04 04:00 自然运行产出 commit 12cdbd4，验证通过 | 瑶光 | 已解决 | 08-03 |
 
 > 注：DRIFT-008 来源为先生回忆（2026-08-02），已与 governance/pending/promotion-quality-plan.md 及 promotion-pool.yaml 实测互证。
 
@@ -34,8 +34,9 @@
 
 ## 二、漂移率
 
-- 当前：14 条漂移，6 已解决（DRIFT-003/004/007/009/011/014）→ **漂移率 57.1%**
-- 目标：一次性清理后 ≤20%（即 ≤3 条未解决）；剩余 8 条均挂后续步骤：DRIFT-001/012（第 6 步退役）、DRIFT-002/006（Phase 2 决策）、DRIFT-008/010（DEC-009 Phase 2 落地）、DRIFT-005（.bak 保留 2 份，未列入本轮 3.2 范围）、DRIFT-013（L2 升级机制覆盖中）
+- 当前：14 条漂移，12 已解决（DRIFT-001/002/003/004/005/006/007/009/011/012/013/014）→ **漂移率 14.3%** ✅（≤20% 目标达成）
+- 剩余 2 条未解决：DRIFT-008（待审池落地，DEC-009 Phase 2）、DRIFT-010（老化回收自动化，DEC-009 Phase 2）——均属 COGN Phase 2，验证期内跟踪
+- 目标：验证期（08-04~08-11）内维持 ≤20%，无新增漂移
 - 计算方法：未解决漂移项 / 漂移项总数
 
 ## 二·补、补课复核记录（P4，08-02 19:15）
@@ -110,3 +111,14 @@
 - 3.4 🔴 2 项补丁回写 COGN 基准文档 designs/记忆架构Final-v1.0.1-评估版.md（§9 补丁记录：4.1 三层分流 / 4.2 minScore=0.85）
 - 3.5 账本更新：DRIFT-004/007/011 → 已解决；DRIFT-001/012 加注留第 6 步；DRIFT-008 加注已回写待落地
 - 漂移率 78.6% → 57.1%（6/14 已解决）；≤20% 目标将在第 6 步 + Phase 2 落地后达成
+
+### 08-04 17:35 — 清理批执行（先生 17:24 批准方案 A：第 6 步提前 + 留档式关闭）
+- **前置核实**：G45/G46 processed.json 实为"双条残留"（pending+done 并存，非简单已 done）；feedback-log 重复条目（R1）经查证为 reflector 误报，文件当前无重复，未改
+- **DRIFT-013 关闭**：G45/G46 pending 残留合并 done（processed.json 双条归一）
+- **DRIFT-002/006 留档式关闭**（先生裁决）：08-01 人工替代 7 天验证；教训——验证检查点必须事后核实 cron 真实存在（LESSON-001 同源）
+- **DRIFT-005 关闭**：保留 .last-good + .bak.pre-G64（最近 2 份），其余 7 份移 snapshots/（30 天自动清理覆盖）
+- **DRIFT-014 核验**：08-04 04:00 自然运行产出 commit 12cdbd4，链路正常，验证通过
+- **reflector 退役（第 6 步提前）**：快照 openclaw.json.20260804_172424 → cron 85e2bf38 删除 → agent 注册移除（agents.list 6→5，配置 hash 7cfed502 生效）→ G74/G80 done → handoff 已干净无需归档
+- **R1 误报处置**：reflector 08-04 报告 feedback-log 重复条目，逐行核对为误报（各标题仅 1 处），未执行无效修改；教训——reflector 产出需核实后再执行
+- 漂移率 57.1% → **14.3%**（12/14 已解决，剩 DRIFT-008/010 属 Phase 2 真待办）
+- 验证期启动：08-04 ~ 08-11（L2 周对账 08-09 周日 20:00 为关键检查点）
