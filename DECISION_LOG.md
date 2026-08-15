@@ -112,6 +112,27 @@
 
 ---
 
+### DEC-014 — 2026-08-15 验证期验收通过 + Auditor 部署 [decision:meta-layer] [tag:META]
+
+**背景：**
+- 元管理层验证期 08-04 ~ 08-11（L2 周对账 + 漂移率 ≤20% 验收）
+- 08-09 第 5 天检查点：漂移率 14.3%（12/14 已解决）✅；L2 周对账（d2a569cf）/配置备份周报（0b4db202）cron 运行正常、无假报
+- 08-11 09:00 收尾提醒投递后先生静默（08-11~14 无实质会话），验收结论顺延至 08-15
+
+**决策（先生 08-15 拍板）：**
+1. **验证期验收：通过** → 元管理层转正：VERSION_LEDGER 持续维护、L2 周对账常态运行
+2. **Auditor 部署**：按 designs/auditor-agent-design.md（终稿 07-25）上线。agent 注册早已就位（qwen3.7-max、工具白名单受限 read/write/sessions_send/web_search/memory_search），补每日 03:00 日审计 cron（isolated、timeout 1800s）。Auditor 替代已退役的 Reflector 承担系统运行状态审计职责
+3. DEC-009（COGN Phase 2）/ DEC-010（第零章/3-A 优先级）不受本决策影响，继续待决
+
+**执行结果（08-15 10:35）：**
+- VERSION_LEDGER 回写验收记录；PROJECT_MAP [INFRA] 下一步状态更新
+- auditor 每日 03:00 cron 已创建（cron id 见 cron list）
+- DRIFT-008/010 保持待处理（阻塞于 DEC-009）
+
+**验证结果：** 待 08-16 03:00 auditor 首次自然运行验证（产出首份审计报告）
+
+---
+
 ## 待写条目（提醒位）
 
 - [x] ~~DEC-008：第 6 步清理执行决策~~ → 已并入 DEC-013（08-04 先生批准提前执行）
